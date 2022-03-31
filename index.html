@@ -5,56 +5,42 @@
 				height: 100%;
 			}
 
-			.test-bar {
-				width: 40px;
-				writing-mode: vertical-rl;
-				text-orientation: sideways;
-				position: absolute;
-				top: 0;
-				padding: 4px;
-				box-sizing: border-box;
+			.container {
+				width: 100%;
+				min-height: -webkit-fill-available;
+				background: grey;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
 			}
 
-			.height100 {
-				left: 0px;
-				height: 98%;
-				background-color: #F8B195;
+			html, body {
+				width: 100%;
+				height: 100%;
 			}
 
-			.height100vh {
-				left: 50px;
-				height: 98vh;
-				background-color: #F67280;
+			.header {
+				height: 60px;
+				width: 100%;
+				background: blue;
 			}
 
-			.innerheight {
-				left: 110px;
-				background-color: #6C5B7B;
-				color: white;
+			.footer {
+				height: 60px;
+				width: 100%;
+				background: red;
 			}
 		</style>
 	</head>
 	<body>
-		<div class="test-bar height100">
-		Height 100%
+		<div class="container">
+			<div class="header">
+			
+			</div>
+			
+			<div class="footer">
+			
+			</div>
 		</div>
-
-		<div class="test-bar height100vh">
-		Height 100vh
-		</div>
-
-		<div class="test-bar innerheight">
-		Height window.innerHeight
-		</div>
-
-		<script>
-			function resize() {
-				document.querySelector('.innerheight').style.height = (window.innerHeight * 0.98) + "px";
-			}
-
-			resize();
-
-			window.onresize = resize;
-		</script>
 	</body>
 </html>
