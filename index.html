@@ -3,50 +3,183 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<style>
 			html, body {
-				height: 100%;
-			}
-
-			.container {
 				width: 100%;
 				height: 100%;
-				background: grey;
+				margin: 0;
+				padding: 0;
+			}
+
+			body {
 				display: flex;
 				flex-direction: column;
-				justify-content: space-between;
 			}
 
-			html, body {
+			#content {
 				width: 100%;
-				height: 100%;
+				padding: 0;
+				box-sizing: border-box;
+				flex: 1 0 auto;
 			}
 
-			.header {
-				height: 60px;
-				width: 100%;
-				background: blue;
-				border: 2px solid black;
-			}
+.document-capture {
+  width: 100%;
+  height: 100%;
+  --h-height: 150px; /* header height */
+  --f-height: 105px; /* footer height */
+}
 
-			.footer {
-				height: 60px;
-				width: 100%;
-				background: red;
-				border: 2px solid black;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-			}
+  .__layout {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+	}
+
+    .__layout__hint-area {
+      width: 100%;
+      height: var(--h-height);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      color: white;
+      background-color: grey;
+      border: 2px solid black;
+      padding: 25px 17px;
+      box-sizing: border-box;
+      flex: 0 0 auto;
+		}
+
+      .__layout__hint-area__title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        flex: 0 0 auto;
+      }
+
+      .__layout__hint-area__tips {
+        max-width: 350px;
+        font-size: 16px;
+        flex: 0 0 auto;
+      }
+
+    .__layout__footer {
+      width: 100%;
+      height: var(--f-height);
+      background-color: grey;
+      border: 2px solid black;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 0 0 auto;
+      box-sizing: border-box;
+    }
+  
+  .__video-frame {
+    position: absolute;
+    top: var(--h-height);
+    left: 0px;
+    width: 100%;
+    height: calc(100% - var(--h-height) - var(--f-height));
+  }
+
+#manual-snap-button {
+  display: none;
+
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: none;
+  background-color: white;
+}
+
+#mitekDisplayContainer > .integrator {
+  --b: 5px; /* thickness of the border */
+  --c: white; /* color of the border */
+  --w: 70px; /* width of border */
+  border: var(--b) solid transparent; /* space for the border */
+  --g: #0000 90deg, var(--c) 0;
+  background:
+    conic-gradient(from 90deg at top var(--b) left var(--b), var(--g)) 0 0,
+    conic-gradient(from 180deg at top var(--b) right var(--b), var(--g)) 100% 0,
+    conic-gradient(from 0deg at bottom var(--b) left var(--b), var(--g)) 0 100%,
+    conic-gradient(from -90deg at bottom var(--b) right var(--b), var(--g)) 100% 100%;
+  background-size: var(--w) var(--w);
+  background-origin: border-box;
+  background-repeat: no-repeat;
+}
+
+@media only screen and (orientation: landscape) {
+    .__layout {
+      transform-origin: left top;
+      transform: rotate(-90deg);
+      width: 100vh;
+      height: 100vw;
+      overflow-x: hidden;
+      position: absolute;
+      top: 100%;
+      left: 0;
+    }
+
+    .__video-frame {
+      position: absolute;
+      top: 0px;
+      left: var(--h-height);
+      width: calc(100% - var(--h-height) - var(--f-height));
+      height: 100%;
+    }
+}
+
+@media only screen and (orientation: landscape) and (max-width: 740px),
+only screen and (orientation: portrait) and (max-height: 740px) {
+  .document-capture {
+    --h-height: 75px;
+    --f-height: 70px;
+	}
+
+    .__layout__hint-area__tips {
+      display: none;
+    }
+
+    .__video-frame #mitekDisplayContainer > .integrator {
+        --w: 45px; /* width of border */
+    }
+
+    #manual-snap-button {
+      width: 50px;
+      height: 50px;
+    }
+  }
 		</style>
 	</head>
 	<body>
-		<div class="container">
-			<div class="header">
-			
-			</div>
-			
-			<div class="footer">
-				<div>I should be centered</div>
-			</div>
-		</div>
+		<div id="content" class="content content--full-screen"><div class="document-capture document-capture--standard">
+  <div class="__layout">
+    <div class="__layout__hint-area">
+      <div class="__layout__hint-area__title">Front of Driver's License</div>
+      <div class="__layout__hint-area__tips">
+                Place your Driver's License on a dark background and fit it within the
+        four corner guides on screen.
+              </div>
+    </div>
+    <div class="__layout__footer">
+      <button id="manual-snap-button" class="__manual-snap-button--visible">
+        <svg class="svg-inline--fa fa-camera fa-2x" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="camera" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M194.6 32H317.4C338.1 32 356.4 45.22 362.9 64.82L373.3 96H448C483.3 96 512 124.7 512 160V416C512 451.3 483.3 480 448 480H64C28.65 480 0 451.3 0 416V160C0 124.7 28.65 96 64 96H138.7L149.1 64.82C155.6 45.22 173.9 32 194.6 32H194.6zM256 384C309 384 352 341 352 288C352 234.1 309 192 256 192C202.1 192 160 234.1 160 288C160 341 202.1 384 256 384z"></path></svg><!-- <i class="fas fa-2x fa-camera"></i> Font Awesome fontawesome.com -->
+      </button>
+    </div>
+  </div>
+  <div class="__video-frame" id="misnap-video">
+  <div id="mitekOuterContainer" class="customContainer"><div id="mitekDisplayContainer" class="customContainer" style="height: 506px; width: 375px;"><video id="mitekMedia" autoplay="true" playsinline="true" style="margin: 0px; padding: 0px; position: absolute; object-fit: contain; transform-origin: 50% 50%; top: 50%; left: 50%; pointer-events: none; transform: translate(-50%, -50%) scale(-0.520833, 0.520833);"></video><div id="mitekHintMessage" class="small" aria-live="assertive" aria-valuetext="Center document on a dark background">Center document on a dark background</div><div id="app-frame-provider---guideBox---1LDVV" class="integrator DL_FRONT" data-guideborder="undefined" style="display:block; position:absolute; top: 59px; left: 65px; width: 244px; height:387px; z-index: 100; "></div></div></div></div>
+</div>
+
+<div id="document-capture-loading-spinner" class="shared-loading-spinner  
+	" style="display: none;">
+	<div class="spinning-icon">
+		<svg class="svg-inline--fa fa-circle-notch fa-spin fa-3x" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle-notch" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M222.7 32.15C227.7 49.08 218.1 66.9 201.1 71.94C121.8 95.55 64 169.1 64 255.1C64 362 149.1 447.1 256 447.1C362 447.1 448 362 448 255.1C448 169.1 390.2 95.55 310.9 71.94C293.9 66.9 284.3 49.08 289.3 32.15C294.4 15.21 312.2 5.562 329.1 10.6C434.9 42.07 512 139.1 512 255.1C512 397.4 397.4 511.1 256 511.1C114.6 511.1 0 397.4 0 255.1C0 139.1 77.15 42.07 182.9 10.6C199.8 5.562 217.6 15.21 222.7 32.15V32.15z"></path></svg><!-- <i class="fas fa-circle-notch fa-spin fa-3x"></i> Font Awesome fontawesome.com -->
+	</div>
+</div></div>
 	</body>
 </html>
