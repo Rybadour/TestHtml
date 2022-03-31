@@ -46,5 +46,15 @@
 		<div class="test-bar innerheight">
 		Height window.innerHeight
 		</div>
+
+		<script>
+			function resize() {
+				document.querySelector('.innerheight').style.height = (window.innerHeight * 0.98) + "px";
+			}
+
+			resize();
+
+			window.onresize = resize;
+		</script>
 	</body>
 </html>
