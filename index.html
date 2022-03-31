@@ -8,7 +8,7 @@
 
 			.container {
 				width: 100%;
-				min-height: -webkit-fill-available;
+				height: 100%;
 				background: grey;
 				display: flex;
 				flex-direction: column;
@@ -24,12 +24,17 @@
 				height: 60px;
 				width: 100%;
 				background: blue;
+				border: 2px solid black;
 			}
 
 			.footer {
 				height: 60px;
 				width: 100%;
 				background: red;
+				border: 2px solid black;
+				display: flex;
+				justify-content: center;
+				align-items: center;
 			}
 		</style>
 	</head>
@@ -40,7 +45,7 @@
 			</div>
 			
 			<div class="footer">
-			
+				<div>I should be centered</div>
 			</div>
 		</div>
 	</body>
