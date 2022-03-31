@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<style>
+			html, body {
+				height: 100%;
+			}
+
+			.test-bar {
+				width: 40px;
+				writing-mode: vertical-rl;
+				text-orientation: sideways;
+				position: absolute;
+				top: 0;
+				padding: 4px;
+				box-sizing: border-box;
+			}
+
+			.height100 {
+				left: 0px;
+				height: 98%;
+				background-color: #F8B195;
+			}
+
+			.height100vh {
+				left: 50px;
+				height: 98vh;
+				background-color: #F67280;
+			}
+
+			.innerheight {
+				left: 110px;
+				background-color: #6C5B7B;
+				color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="test-bar height100">
+		Height 100%
+		</div>
+
+		<div class="test-bar height100vh">
+		Height 100vh
+		</div>
+
+		<div class="test-bar innerheight">
+		Height window.innerHeight
+		</div>
+	</body>
+</html>
